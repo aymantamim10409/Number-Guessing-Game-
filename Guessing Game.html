@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+h1{ text-align:center; color:red; }
+h3{ text-align:center; color:green; }
+body{ background:gray; }
+h4{ text-align:center; margin-top:120px; }
+a{ text-decoration:none; color:white; }
+a:hover{ color:blue; }
+</style>
+
+<title>Number Guessing Game</title>
+</head>
+
+<body>
+
+<h1>Welcome to Guessing game</h1>
+
+<h3 id="score"></h3>
+
+<a href="" onclick="location.reload();">
+    <h4>Try again <i class="fa-solid fa-repeat"></i></h4>
+</a>
+
+<script>
+// win & lose load from storage
+let win = localStorage.getItem("win") || 0;
+let lose = localStorage.getItem("lose") || 0;
+
+var number = parseInt(prompt("Enter a number between 1 to 5"));
+
+if(number > 5 || number <= 0){
+    alert('Invalid number! Please enter between 1 to 5');
+} else {
+
+    var randomNumber = Math.floor(Math.random() * 5) + 1;
+
+    if(number === randomNumber){
+        document.write('🎆 You won 🎇');
+        win++;
+        localStorage.setItem("win", win);
+    } else {
+        document.write('You lose! the number is: ' + randomNumber);
+        lose++;
+        localStorage.setItem("lose", lose);
+    }
+}
+
+// show score
+document.getElementById("score").innerHTML =
+"🏆 Wins: " + win + " | ❌ Losses: " + lose;
+
+</script>
+
+</body>
+</html>
